@@ -1,0 +1,111 @@
+body{
+    min-height: 100vh;
+    position: relative;
+}
+
+.chat-box {
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 85.7vh;
+  min-height: 85.7vh;
+  padding: 20px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+::-moz-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-moz-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-moz-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-moz-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.chat-input {
+  width: 100%;
+  position: absolute;
+  margin-top: 30px;
+  bottom: 0%;
+}
+
+.message-box {
+  padding: 10px;
+  border-radius: 20px;
+  max-width: 500px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.your-message {
+  align-self: flex-end;
+  background-color: #0078ff;
+  color: white;
+}
+
+.recipient-message {
+  align-self: flex-start;
+  background-color: darkgray;
+  color: white;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: row;
+  height: 120px;
+  line-height: 80px;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  background-color: lightseagreen;
+  font-size: 2em;
+  text-align: center;
+  border-radius: 50%;
+  color: white;
+}
+
+.name-container {
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.conversation-container{
+    height: 93vh;
+}
+
+#message-input{
+    width: 80%;
+}
