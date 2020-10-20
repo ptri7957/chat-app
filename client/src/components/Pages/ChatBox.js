@@ -15,7 +15,7 @@ import UserCard from "../Layout/UserCard";
 const Chat = ({
   auth,
   messages,
-  match,
+  username,
   getMessages,
   postMessage,
   userId
@@ -51,17 +51,10 @@ const Chat = ({
   };
 
   return (
-    <div className="mt-2 chat-box-container">
-      {/* {auth.user !== null && messages.conversation.length > 0 && (
-        <UserCard
-          recipient={
-            messages.conversation[0].participants.filter(
-              (participant) =>
-                participant._id.toString() !== auth.user.id.toString()
-            )[0]
-          }
+    <div className="chat-box-container">
+      <UserCard
+          recipient={username}
         />
-      )} */}
       <div className="chat-box" ref={messageRef}>
         {auth.user !== null && messages.messages.length > 0 ? (
           messages.messages.map((message) => {

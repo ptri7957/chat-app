@@ -6,8 +6,8 @@ const UserCard = ({recipient}) => {
     return (
         <Card>
             <Card.Body className="profile-container">
-                <div className="profile-pic">{recipient.username.toUpperCase()[0]}</div>
-                <div className="name-container">{recipient.username}</div>
+                <div className="profile-pic">{recipient.toUpperCase()[0]}</div>
+                <div className="name-container">{recipient}</div>
             </Card.Body>
         </Card>
     )

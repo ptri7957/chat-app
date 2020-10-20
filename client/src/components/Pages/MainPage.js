@@ -6,11 +6,11 @@ import { getConversations } from "../../actions/messages";
 import { connect } from "react-redux";
 
 const MainPage = ({
-  auth: { user },
   messages: { conversations },
   getConversations,
 }) => {
   const [userId, setUserId] = useState("");
+  const [username, setUsername] = useState("");
 
 
   useEffect(() => {
@@ -18,8 +18,9 @@ const MainPage = ({
   }, []);
 
 
-  const handleClick = (id) => {
+  const handleClick = (id, username) => {
     setUserId(id.toString());
+    setUsername(username)
     console.log(id)
   };
 
@@ -31,7 +32,7 @@ const MainPage = ({
             <Card.Body className="mt-2 conversation-container">
                 {conversations.length > 0 && (
                     conversations.map(conversation => (
-                        <div onClick={() => handleClick(conversation.participant._id)} className="profile-container">
+                        <div onClick={() => handleClick(conversation.participant._id, conversation.participant.username)} className="profile-container">
                             <div className="profile-pic">{conversation.participant.username.toUpperCase()[0]}</div>
                             <div className="name-container">{conversation.participant.username}</div>
                         </div>
@@ -42,7 +43,7 @@ const MainPage = ({
         </div>
         <div className="col-lg-8 col-md-8">
           {userId !== "" ? (
-            <Chat userId={userId} />
+            <Chat userId={userId} username={username} />
           ) : (
             <div>Click on a conversation</div>
           )}
@@ -53,13 +54,11 @@ const MainPage = ({
 };
 
 MainPage.propTypes = {
-  auth: PropTypes.object.isRequired,
   messages: PropTypes.object.isRequired,
   getConversations: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  auth: state.auth,
   messages: state.messages,
 });
 
