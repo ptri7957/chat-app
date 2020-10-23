@@ -82,3 +82,14 @@ export const postMessage = (userId, message) => async (dispatch) => {
     });
   }
 };
+
+export const createConversation = (userId, history) => async dispatch => {
+  try {
+    const res = await axios.post(`/api/messages/conversation?to=${userId}`);
+    history.push("/main");
+  } catch (error) {
+    dispatch({
+      type: MESSAGES_ERROR,
+    });
+  }
+}

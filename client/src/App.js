@@ -13,6 +13,7 @@ import setToken from "./utils/setToken";
 import NavBar from "./components/Layout/NavBar";
 import PrivateRoute from "./components/Routing/PrivateRoute";
 import MainPage from "./components/Pages/MainPage";
+import Users from "./components/Pages/Users";
 
 function App() {
   if (localStorage.token) {
@@ -28,6 +29,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
+          <PrivateRoute exact path="/users" component={Users} />
           <PrivateRoute exact path="/main" component={MainPage} />
         </Switch>
       </Router>

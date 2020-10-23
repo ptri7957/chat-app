@@ -1,25 +1,14 @@
 import React, { useState, useEffect, Fragment, useRef } from "react";
 import PropTypes from "prop-types";
-import { FormControl, Button, InputGroup } from "react-bootstrap";
+import { FormControl, FormGroup } from "react-bootstrap";
 import { connect } from "react-redux";
 import io from "socket.io-client";
 
-import ChatboxFrom from "../Layout/ChatboxFrom";
-import ChatboxTo from "../Layout/ChatboxTo";
-import {
-  getMessages,
-  postMessage,
-} from "../../actions/messages";
-import UserCard from "../Layout/UserCard";
+import ChatboxFrom from "./ChatboxFrom";
+import ChatboxTo from "./ChatboxTo";
+import { getMessages, postMessage } from "../../actions/messages";
 
-const Chat = ({
-  auth,
-  messages,
-  username,
-  getMessages,
-  postMessage,
-  userId
-}) => {
+const Chat = ({ auth, messages, getMessages, postMessage, userId }) => {
   const [chatMessage, setChatMessage] = useState("");
   const chatRef = useRef();
   const messageRef = useRef();
@@ -51,51 +40,49 @@ const Chat = ({
   };
 
   return (
-    <div className="chat-box-container">
-      <UserCard
-          recipient={username}
-        />
-      <div className="chat-box" ref={messageRef}>
-        {auth.user !== null && messages.messages.length > 0 ? (
-          messages.messages.map((message) => {
-            if (message.from === auth.user.id) {
-              return (
-                <ChatboxFrom
-                  key={message.message._id}
-                  message={message.message}
-                />
-              );
-            } else {
-              return (
-                <ChatboxTo
-                  key={message.message._id}
-                  message={message.message}
-                />
-              );
-            }
-          })
-        ) : (
-          <Fragment></Fragment>
-        )}
+    <Fragment>
+      <div className="chat-box-container">
+        <div className="chat-box" ref={messageRef}>
+          {auth.user !== null && messages.messages.length > 0 ? (
+            messages.messages.map((message) => {
+              if (message.from === auth.user.id) {
+                return (
+                  <ChatboxFrom
+                    key={message.message._id}
+                    message={message.message}
+                  />
+                );
+              } else {
+                return (
+                  <ChatboxTo
+                    key={message.message._id}
+                    message={message.message}
+                  />
+                );
+              }
+            })
+          ) : (
+            <Fragment></Fragment>
+          )}
+        </div>
       </div>
       <div className="chat-input">
         <form onSubmit={(e) => handleSubmit(e)}>
-          <InputGroup>
+          <FormGroup>
             <FormControl
               type="text"
               ref={chatRef}
               placeholder="Type a message..."
               id="message-input"
             ></FormControl>
-            <InputGroup.Append>
-              <Button className="primary" type="submit">
-                Send
-              </Button>
-            </InputGroup.Append>
-          </InputGroup>
+
+            <button className="btn btn-primary invisible" type="submit">
+              Send
+            </button>
+          </FormGroup>
         </form>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

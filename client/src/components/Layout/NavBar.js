@@ -14,8 +14,8 @@ const NavBar = ({ auth, logout }) => {
         {auth.isAuthenticated ? (
           <Fragment>
             <Nav className="ml-auto">
-              <Nav.Link as={Link} to="/chat">
-                Chat
+              <Nav.Link as={Link} to="/users">
+                Users
               </Nav.Link>
               <Nav.Link as={Link} to="" onClick={logout}>
                 Logout
